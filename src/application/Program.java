@@ -51,22 +51,27 @@ public class Program {
 		System.out.print("Enter de employee id that will have salary increase: ");
 		int increasedSalaryId = scanner.nextInt();
 		
-		Integer position = position(list, increasedSalaryId);
+		Employee employee = list.stream().filter(x -> x.getId() == increasedSalaryId).findFirst().orElse(null);
+	/*
+	 *  OBS.: abaixo foi utilizado um método sem utilizar a função acima para verificar se há ou não o id do funcionario digitado em increasedSalaryId.
+	 *  É necessario refatorar o programa caso deseje testar o método abaixo, favor verificar o commit anterior [ Primeira Resolução ]
+	 */
+		//Integer position = position(list, increasedSalaryId);
 		
-		if(position == null) {
+		if(employee == null) {
 			System.out.println("This id does not exist!");
 		} else {
 			System.out.print("Enter the percentage: ");
 			double percentage = scanner.nextDouble();
 			
-			list.get(position).increaseSalary(percentage);
+			employee.increaseSalary(percentage);
 		}
 		
 		System.out.println();
 		System.out.println("List of Employyes: ");
 		
-		for (Employee employee : list) {
-			System.out.println(employee);
+		for (Employee listOfEmployees : list) {
+			System.out.println(listOfEmployees);
 		}
 		
 		
